@@ -41,10 +41,12 @@ const SignInForm = () => {
 
 	const onSubmit = useCallback(
 		(formData: z.infer<typeof SignInFormSchema>) => {
+			setErrorMessage(null);
+
 			setFormSubmitted(async () => {
 				const error = await handleSignIn(formData);
 
-				// if (error) setErrorMessage(error.message);
+				if (error) setErrorMessage(error.message);
 			});
 		},
 		[]
@@ -83,11 +85,11 @@ const SignInForm = () => {
 							</FormItem>
 						)}
 					/>
-					{/* {errorMessage && (
+					{errorMessage && (
 						<p className='inline-flex h-10 w-full items-center justify-center gap-4 whitespace-nowrap rounded-md   bg-destructive/20 px-4 py-2 text-sm font-medium text-destructive ring-offset-background'>
 							<XCircle /> {errorMessage}
 						</p>
-					)} */}
+					)}
 				</div>
 				<div>
 					<Button

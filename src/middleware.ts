@@ -1,9 +1,7 @@
-// AUTH todo
-import { NextRequest } from 'next/server';
+import NextAuth from 'next-auth';
+import { authConfig } from './auth.config';
 
-export default function Middleware(req: NextRequest) {
-	console.log(req.nextUrl);
-}
+export default NextAuth(authConfig).auth;
 
 export const config = {
 	matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],

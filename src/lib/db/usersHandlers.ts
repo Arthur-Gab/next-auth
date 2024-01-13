@@ -21,3 +21,17 @@ export const createUser = async (email: string, password?: string) => {
 		return { message: 'Algo deu errado. Tente outra vez.' };
 	}
 };
+
+export const getUser = async (email: string) => {
+	try {
+		return await db.user.findUniqueOrThrow({
+			where: {
+				email,
+			},
+		});
+	} catch (e) {
+		console.error(e);
+		if (e instanceof PrismaClientKnownRequestError && e.code === 'P2025')
+			return { message: 'Esse usuario nao esta cadastrado' };
+	}
+};

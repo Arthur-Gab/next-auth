@@ -4,6 +4,8 @@ import z from 'zod';
 import { SignInFormSchema } from '@/components/SignInForm';
 import { SignUpFormSchema } from '@/components/SignUpForm';
 import { createUser } from '@/lib/db';
+import { signIn } from '@/auth';
+import { AuthError } from 'next-auth';
 
 export const handleSignIn = async (
 	formData: z.infer<typeof SignInFormSchema>
@@ -12,7 +14,21 @@ export const handleSignIn = async (
 		setTimeout(resolve, 1500);
 	});
 
-	console.log(formData);
+	try {
+		await signIn('credentials', formData);
+	} catch (e) {
+		console.error(e);
+
+		if (e instanceof AuthError) {
+			switch (e.type) {
+				case 'CredentialsSignin':
+					return { message: 'E-mail e/ou senha inválidos.' };
+
+				default:
+					return { message: 'Algo deu errado. Tente outra vez.' };
+			}
+		}
+	}
 };
 
 export const handleSignUp = async (

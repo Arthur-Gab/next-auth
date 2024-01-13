@@ -4,18 +4,21 @@ import z from 'zod';
 import { SignInFormSchema } from '@/components/SignInForm';
 import { SignUpFormSchema } from '@/components/SignUpForm';
 import { createUser } from '@/lib/db';
-import { signIn } from '@/auth';
+// import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
 
+/**
+ *
+ * @param {Object} formData - The user sign-up form data.
+ * @property {string} formData.email - The email address provided in the form
+ * @property {string} formData.passowrd - The passowrd provided in the form
+ * @returns {Promise<{ message: string } | undefined>} - A promise that resolves to an object with a message property (error message) or user Authentication if successful.
+ */
 export const handleSignIn = async (
 	formData: z.infer<typeof SignInFormSchema>
 ) => {
-	await new Promise((resolve) => {
-		setTimeout(resolve, 1500);
-	});
-
 	try {
-		await signIn('credentials', formData);
+		// await signIn('credentials', formData);
 	} catch (e) {
 		console.error(e);
 
@@ -31,15 +34,21 @@ export const handleSignIn = async (
 	}
 };
 
+/**
+ *
+ * @param {Object} formData - The user sign-up form data.
+ * @property {string} formData.email - The email address provided in the form
+ * @property {string} formData.passowrd - The passowrd provided in the form
+ * @returns {Promise<{ message: string } | undefined>} - A promise that resolves to an object with a message property (error message) or undefined if successful.
+ */
 export const handleSignUp = async (
 	formData: z.infer<typeof SignUpFormSchema>
 ) => {
-	await new Promise((resolve) => {
-		setTimeout(resolve, 500);
-	});
-
 	const { email, password } = formData;
 
-	// Can be undefined or {message : 'Error message'}
 	return await createUser(email, password);
+};
+
+export const handleSignOut = async () => {
+	// await signOut({ redirectTo: '/' });
 };

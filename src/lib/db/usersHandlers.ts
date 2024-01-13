@@ -32,6 +32,6 @@ export const getUser = async (email: string) => {
 	} catch (e) {
 		console.error(e);
 		if (e instanceof PrismaClientKnownRequestError && e.code === 'P2025')
-			return { message: 'Esse usuario nao esta cadastrado' };
+			return new Error('Esse usuario nao esta cadastrado');
 	}
 };

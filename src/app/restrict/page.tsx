@@ -1,7 +1,7 @@
 import { TypographyH1 } from '@/components/ui/typograph';
 import { Button } from '@/components/ui/button';
-import { LogOut } from 'lucide-react';
 import Link from 'next/link';
+import LogOutButton from '@/components/LogOutButton';
 
 const RestricPage = () => {
 	return (
@@ -19,10 +19,7 @@ const RestricPage = () => {
 						Hello <span className='text-blue-500'>{'{user}'}</span>{' '}
 						from Protected Page
 					</TypographyH1>
-
-					<Button className='gap-4 self-center'>
-						<LogOut /> Sair
-					</Button>
+					<LogOutButton />
 				</div>
 			</main>
 		</>

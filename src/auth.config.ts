@@ -1,9 +1,6 @@
 import { type NextAuthConfig } from 'next-auth';
 
 export const authConfig = {
-	pages: {
-		signIn: '/auth/sign-in',
-	},
 	callbacks: {
 		authorized({ auth, request: { nextUrl } }) {
 			const isLoggedIn = !!auth?.user;
@@ -18,10 +15,12 @@ export const authConfig = {
 				if (isLoggedIn) return true;
 
 				return false;
-			} else if (isLoggedIn) {
+			}
+			if (isLoggedIn) {
 				return Response.redirect(new URL('/restrict', nextUrl));
 			}
-			return true;
+
+			return false;
 		},
 	},
 	// Place here Github and Google Providers

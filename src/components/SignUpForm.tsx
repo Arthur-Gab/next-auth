@@ -41,6 +41,8 @@ const SignUpForm = () => {
 
 	const onSubmit = useCallback(
 		(formData: z.infer<typeof SignUpFormSchema>) => {
+			setErrorMessage(null);
+
 			setFormSubmitted(async () => {
 				const error = await handleSignUp(formData);
 

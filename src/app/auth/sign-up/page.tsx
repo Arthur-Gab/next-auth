@@ -22,6 +22,11 @@ const SignUpPage = () => {
 			<div className='w-full max-w-sm'>
 				<Card>
 					<CardHeader>
+						<div className='mb-4 text-right'>
+							<Button asChild>
+								<Link href='/'>Cancelar</Link>
+							</Button>
+						</div>
 						<CardTitle className='text-center'>
 							Criar uma conta
 						</CardTitle>

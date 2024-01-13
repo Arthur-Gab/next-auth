@@ -83,6 +83,11 @@ const SignInForm = () => {
 							</FormItem>
 						)}
 					/>
+					{/* {errorMessage && (
+						<p className='inline-flex h-10 w-full items-center justify-center gap-4 whitespace-nowrap rounded-md   bg-destructive/20 px-4 py-2 text-sm font-medium text-destructive ring-offset-background'>
+							<XCircle /> {errorMessage}
+						</p>
+					)} */}
 				</div>
 				<div>
 					<Button

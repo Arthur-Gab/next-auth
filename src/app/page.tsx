@@ -36,6 +36,14 @@ export default function Home() {
 						<Link href='/auth/sign-in'>Logar</Link>
 					</Button>
 				</div>
+				<Button
+					className='gap-4'
+					asChild
+				>
+					<Link href='/restrict'>
+						Pagina Protegida <ExternalLink />
+					</Link>
+				</Button>
 			</main>
 		</>
 	);

@@ -55,11 +55,11 @@ const SignInPage = () => {
 							variant='secondary'
 						>
 							<Google size={24} />
-							Entar com o google
+							Entar com Google
 						</Button>
 						<Button className='w-full gap-4'>
 							<Github size={24} />
-							Entar com o github
+							Entar com Github
 						</Button>
 						{/* </div> */}
 

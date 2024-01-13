@@ -55,11 +55,11 @@ const SignUpPage = () => {
 							variant='secondary'
 						>
 							<Google size={24} />
-							Criar conta com google
+							Criar com Google
 						</Button>
 						<Button className='w-full gap-4'>
 							<Github size={24} />
-							Criar conta com github
+							Criar com Github
 						</Button>
 						{/* </div> */}
 

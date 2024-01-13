@@ -15,8 +15,9 @@ import {
 } from './ui/form';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
+import { XCircle } from 'lucide-react';
 
-import { useCallback, useTransition } from 'react';
+import { useCallback, useTransition, useState } from 'react';
 
 export const SignInFormSchema = z.object({
 	email: z
@@ -28,6 +29,7 @@ export const SignInFormSchema = z.object({
 
 const SignInForm = () => {
 	const [formSubmitted, setFormSubmitted] = useTransition();
+	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
 	const form = useForm<z.infer<typeof SignInFormSchema>>({
 		resolver: zodResolver(SignInFormSchema),
@@ -39,8 +41,10 @@ const SignInForm = () => {
 
 	const onSubmit = useCallback(
 		(formData: z.infer<typeof SignInFormSchema>) => {
-			setFormSubmitted(() => {
-				handleSignIn(formData);
+			setFormSubmitted(async () => {
+				const error = await handleSignIn(formData);
+
+				// if (error) setErrorMessage(error.message);
 			});
 		},
 		[]

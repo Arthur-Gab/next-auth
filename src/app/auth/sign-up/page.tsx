@@ -54,19 +54,20 @@ const SignUpPage = () => {
 					</CardContent>
 
 					<CardFooter className='flex flex-col gap-4'>
-						{/* <div className='flex w-full gap-4'> */}
 						<Button
 							className='w-full gap-4'
-							variant='secondary'
+							variant='outline'
 						>
 							<Google size={24} />
 							Criar com Google
 						</Button>
-						<Button className='w-full gap-4'>
+						<Button
+							className='w-full gap-4'
+							variant='outline'
+						>
 							<Github size={24} />
 							Criar com Github
 						</Button>
-						{/* </div> */}
 
 						<Button
 							asChild

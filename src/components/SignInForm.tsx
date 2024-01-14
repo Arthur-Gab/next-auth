@@ -4,6 +4,7 @@ import z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { handleSignIn } from '@/lib/actions/auth';
+import { SignInFormSchema } from '@/lib/types/auth';
 
 import {
 	Form,
@@ -18,14 +19,6 @@ import { Button } from './ui/button';
 import { XCircle } from 'lucide-react';
 
 import { useCallback, useTransition, useState } from 'react';
-
-export const SignInFormSchema = z.object({
-	email: z
-		.string()
-		.min(1, { message: 'Email é obrigatório.' })
-		.email({ message: 'Email inválido' }),
-	password: z.string().min(1, { message: 'Senha é obrigatória.' }),
-});
 
 const SignInForm = () => {
 	const [formSubmitted, setFormSubmitted] = useTransition();

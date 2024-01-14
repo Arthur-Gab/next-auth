@@ -2,13 +2,13 @@
 
 import { Button } from './ui/button';
 import { LogOut } from 'lucide-react';
-// import { handleSignOut } from '@/lib/actions/auth';
+import { handleSignOut } from '@/lib/actions/auth';
 
 const LogOutButton = () => {
 	return (
 		<Button
 			className='gap-4 self-center'
-			// onClick={() => handleSignOut()}
+			onClick={() => handleSignOut()}
 		>
 			<LogOut /> Sair
 		</Button>

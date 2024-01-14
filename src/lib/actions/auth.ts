@@ -4,7 +4,6 @@ import z from 'zod';
 import { SignInFormSchema } from '@/components/SignInForm';
 import { SignUpFormSchema } from '@/components/SignUpForm';
 import { createUser } from '@/lib/db';
-// import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
 
 /**
@@ -18,7 +17,7 @@ export const handleSignIn = async (
 	formData: z.infer<typeof SignInFormSchema>
 ) => {
 	try {
-		// await signIn('credentials', formData);
+		console.log(formData);
 	} catch (e) {
 		console.error(e);
 
@@ -50,5 +49,5 @@ export const handleSignUp = async (
 };
 
 export const handleSignOut = async () => {
-	// await signOut({ redirectTo: '/' });
+	console.log('Sing Out');
 };

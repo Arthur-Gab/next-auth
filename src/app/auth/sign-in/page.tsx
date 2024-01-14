@@ -54,19 +54,20 @@ const SignInPage = () => {
 					</CardContent>
 
 					<CardFooter className='flex flex-col gap-4'>
-						{/* <div className='flex w-full gap-4'> */}
 						<Button
 							className='w-full gap-4'
-							variant='secondary'
+							variant='outline'
 						>
 							<Google size={24} />
 							Entar com Google
 						</Button>
-						<Button className='w-full gap-4'>
+						<Button
+							className='w-full gap-4'
+							variant='outline'
+						>
 							<Github size={24} />
 							Entar com Github
 						</Button>
-						{/* </div> */}
 
 						<Button
 							asChild

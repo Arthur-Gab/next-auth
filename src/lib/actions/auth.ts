@@ -1,8 +1,7 @@
 'use server';
 
 import z from 'zod';
-import { SignInFormSchema } from '@/components/SignInForm';
-import { SignUpFormSchema } from '@/components/SignUpForm';
+import { SignInFormSchema, SignUpFormSchema } from '@/lib/types/auth';
 import { createUser } from '@/lib/db';
 import { AuthError } from 'next-auth';
 

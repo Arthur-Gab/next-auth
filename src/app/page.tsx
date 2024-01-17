@@ -40,7 +40,7 @@ export default function Home() {
 					className='gap-4'
 					asChild
 				>
-					<Link href='/restrict'>
+					<Link href='/settings'>
 						Pagina Protegida <ExternalLink />
 					</Link>
 				</Button>

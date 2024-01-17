@@ -5,6 +5,8 @@ import { SignInFormSchema, SignUpFormSchema } from '@/lib/types/auth';
 import { createUser } from '@/lib/db';
 import { AuthError } from 'next-auth';
 
+import { signIn, signOut } from '@/auth';
+
 /**
  *
  * @param {Object} formData - The user sign-up form data.
@@ -16,9 +18,16 @@ export const handleSignIn = async (
 	formData: z.infer<typeof SignInFormSchema>
 ) => {
 	console.log('Starting Login');
+	console.log(formData);
+
+	const { email, password } = formData;
 
 	try {
-		console.log(formData);
+		await signIn('credentials', {
+			email,
+			password,
+			redirectTo: '/settings',
+		});
 	} catch (e) {
 		console.error(e);
 
@@ -31,6 +40,8 @@ export const handleSignIn = async (
 					return { message: 'Algo deu errado. Tente outra vez.' };
 			}
 		}
+
+		throw e; // Necessario lancar o erro para o redirecionamento funcionar
 	}
 };
 
@@ -52,4 +63,18 @@ export const handleSignUp = async (
 
 export const handleSignOut = async () => {
 	console.log('Sing Out');
+
+	try {
+		await signOut({
+			redirectTo: '/',
+		});
+	} catch (e) {
+		console.error(e);
+
+		if (e instanceof AuthError) {
+			console.log(e.type);
+		}
+
+		throw e; // Necessario lancar o erro para o redirecionamento funcionar
+	}
 };

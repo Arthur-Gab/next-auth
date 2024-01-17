@@ -1,4 +1,3 @@
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import db from './';
 
 export const createUser = async (email: string, password?: string) => {
@@ -17,19 +16,25 @@ export const createUser = async (email: string, password?: string) => {
 		// TODO: Send Verification Token
 	} catch (e) {
 		console.log(e);
-		if (e instanceof PrismaClientKnownRequestError && e.code === 'P2002')
-			return { message: 'Este email já está em uso.' };
 
+		// @ts-expect-error
+		if (e.code === 'P2002')
+			// PrismaClientKnownRequestError was throwing an Erro when wokirng with Auth.JS
+			return { message: 'Este email já está em uso.' };
 		return { message: 'Algo deu errado. Tente outra vez.' };
 	}
 };
 
 export const getUserByEmail = async (email: string) => {
+	console.log('Tentando buscar um usuario');
+
 	const user = await db.user.findUnique({
 		where: {
 			email,
 		},
 	});
+
+	console.log(user);
 
 	if (!user) {
 		return null;

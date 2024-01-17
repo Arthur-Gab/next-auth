@@ -13,6 +13,8 @@ export const createUser = async (email: string, password?: string) => {
 				...(password ? { password } : {}),
 			},
 		});
+
+		// TODO: Send Verification Token
 	} catch (e) {
 		console.log(e);
 		if (e instanceof PrismaClientKnownRequestError && e.code === 'P2002')
@@ -22,16 +24,16 @@ export const createUser = async (email: string, password?: string) => {
 	}
 };
 
-export const getUser = async (email: string) => {
-	try {
-		return await db.user.findUniqueOrThrow({
-			where: {
-				email,
-			},
-		});
-	} catch (e) {
-		console.error(e);
-		if (e instanceof PrismaClientKnownRequestError && e.code === 'P2025')
-			return new Error('Esse usuario nao esta cadastrado');
+export const getUserByEmail = async (email: string) => {
+	const user = await db.user.findUnique({
+		where: {
+			email,
+		},
+	});
+
+	if (!user) {
+		return null;
 	}
+
+	return user;
 };

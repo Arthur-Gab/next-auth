@@ -15,6 +15,8 @@ import { AuthError } from 'next-auth';
 export const handleSignIn = async (
 	formData: z.infer<typeof SignInFormSchema>
 ) => {
+	console.log('Starting Login');
+
 	try {
 		console.log(formData);
 	} catch (e) {
@@ -43,6 +45,7 @@ export const handleSignUp = async (
 	formData: z.infer<typeof SignUpFormSchema>
 ) => {
 	const { email, password } = formData;
+	console.log('Starting Create User');
 
 	return await createUser(email, password);
 };
